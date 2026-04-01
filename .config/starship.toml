@@ -10,7 +10,9 @@ $git_status\
 [ ](fg:color_aqua)\
 $line_break$character """
 
-right_format = """[](fg:color_blue)
+right_format = """[](fg:color_bg1)\
+$cmd_duration\
+[](bg:color_bg1 fg:color_blue)\
 $c\
 $cpp\
 $rust\
@@ -81,6 +83,12 @@ disabled = false
 time_format = "%R"
 style = "bg:color_purple"
 format = '[[  $time ](fg:color_fg0 bg:color_purple)]($style)'
+
+[cmd_duration]
+show_milliseconds = true
+min_time = 500
+style = "bg:color_bg1"
+format = "[took $duration ]($style)"
 
 [nodejs]
 symbol = ""
