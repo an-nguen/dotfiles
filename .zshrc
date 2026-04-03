@@ -19,3 +19,9 @@ if [ -d "$FNM_PATH" ]; then
   export PATH="$FNM_PATH:$PATH"
   eval "$(fnm env --shell zsh)"
 fi
+
+if command -v ng >/dev/null 2>&1
+then
+  # Load Angular CLI autocompletion.
+  source <(ng completion script)
+fi
