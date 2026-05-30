@@ -3,6 +3,7 @@
 format = """[](fg:color_orange)\
 $os\
 $username\
+$hostname\
 [](bg:color_yellow fg:color_orange)\
 $directory\
 [](fg:color_yellow bg:color_aqua)\
@@ -29,6 +30,7 @@ $time\
 [ ](fg:color_purple)"""
 
 palette = 'gruvbox_dark'
+
 [os]
 disabled = false
 style = "bg:color_orange fg:color_fg0"
@@ -93,6 +95,10 @@ style = "bold fg:color_fg0 bg:color_yellow"
 format = "[ $path ]($style)"
 truncation_length = 64
 truncation_symbol = "…/"
+
+[hostname]
+format = "[@$hostname ]($style)"
+style = "bg:color_orange fg:color_fg0 bold"
 
 [git_branch]
 symbol = ""
