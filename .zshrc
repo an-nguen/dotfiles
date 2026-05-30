@@ -1,3 +1,6 @@
+DOTFILES_GIT_DIR=$HOME/.dotfiles/
+alias git-dotfiles='/usr/bin/git --git-dir=$DOTFILES_GIT_DIR --work-tree=$HOME'
+
 ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
 # Download zimfw plugin manager if missing.
 if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
@@ -24,4 +27,11 @@ if command -v ng >/dev/null 2>&1
 then
   # Load Angular CLI autocompletion.
   source <(ng completion script)
+fi
+
+# fnm
+FNM_PATH="/home/an/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env --shell zsh)"
 fi
