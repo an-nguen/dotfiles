@@ -52,3 +52,17 @@ then
   source <(ng completion script)
 fi
 
+autoload -U compinit
+compinit
+function _run-as() {
+  _arguments \
+    '1:user:_users' \
+    '*:command:_command_names'
+}
+
+function run-as() {
+  local user="$1"
+  sudo -u "$user" XDG_RUNTIME_DIR=/run/user/$(id -u "$user") ${@:2}
+}
+
+compdef _run-as run-as
