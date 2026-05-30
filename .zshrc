@@ -1,3 +1,25 @@
+function install_starship() {
+  if ! command -v starship &> /dev/null; then 
+    echo 'test'
+  . /etc/os-release
+  case "$ID" in
+    debian)
+      sudo apt install -y starship
+      ;;
+    fedora)
+      sudo dnf copr enable atim/starship
+      sudo dnf install starship
+      ;;
+    arch)
+      sudo pacman -S starship
+      ;;
+    *)
+      curl -sS https://starship.rs/install.sh | sh
+      ;;
+  esac
+  fi
+}
+
 DOTFILES_GIT_DIR=$HOME/.dotfiles/
 alias git-dotfiles='/usr/bin/git --git-dir=$DOTFILES_GIT_DIR --work-tree=$HOME'
 
@@ -14,6 +36,7 @@ fi
 # Initialize modules.
 source ${ZIM_HOME}/init.zsh
 
+install_starship
 eval "$(starship init zsh)"
 
 # fnm
@@ -29,9 +52,3 @@ then
   source <(ng completion script)
 fi
 
-# fnm
-FNM_PATH="/home/an/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "$(fnm env --shell zsh)"
-fi
