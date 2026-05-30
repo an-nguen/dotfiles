@@ -53,9 +53,19 @@ then
 fi
 
 function _run-as() {
+  _message "state=$state CURRENT=$CURRENT words=${words[@]}"
   _arguments \
     '1:user:_users' \
-    '*:command:_command_names'
+    '2:command:_command_names -e' \
+    '*:command_args:->command'
+
+  case $state in
+    command)
+      words=("${words[@]:2}")
+      (( CURRENT -= 2 ))
+      _dispatch "${words[1]}" "${words[1]}" 
+      ;;
+  esac
 }
 
 function run-as() {
