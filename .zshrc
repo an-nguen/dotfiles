@@ -52,8 +52,6 @@ then
   source <(ng completion script)
 fi
 
-autoload -U compinit
-compinit
 function _run-as() {
   _arguments \
     '1:user:_users' \
